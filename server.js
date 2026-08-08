@@ -7,6 +7,8 @@ import { connectToDb } from "./config/db.js";
 import userRoutes from "./routes/users.js";
 import adRoutes from "./routes/ads.js";
 import sellerRoutes from "./routes/seller.js";
+import chatRoutes from "./routes/chats.js";
+import shopRoutes from "./routes/shops.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,6 +29,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/users", userRoutes);
 app.use("/api/ads", adRoutes);
 app.use("/api/seller", sellerRoutes);
+app.use("/api/chats", chatRoutes);
+app.use("/api/shops", shopRoutes);
 
 connectToDb((err) => {
   if (!err) {

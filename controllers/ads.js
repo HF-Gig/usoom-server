@@ -122,7 +122,7 @@ export async function createAd(req, res) {
       subCategory,
       condition,
       description,
-      price: price ? (price.toString().startsWith('$') ? price.toString() : `$${price}`) : '$0',
+      price: price ? (price.toString().startsWith('Rs. ') ? price.toString() : `Rs. ${price}`) : 'Rs. 0',
       negotiable: negotiable === 'true' || negotiable === true,
       quantity: quantity || '0',
       delivery: delivery || 'Pickup',
@@ -230,6 +230,7 @@ export async function getAdById(req, res) {
       image: formattedImage,
       images: formattedImages.length > 0 ? formattedImages : [formattedImage],
       postedOn: formattedDate,
+      shopID: ad.shopId ? ad.shopId.toString() : (seller ? seller.id : null),
       seller
     });
 
